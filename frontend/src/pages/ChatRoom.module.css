@@ -1,0 +1,92 @@
+.page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.chatBox {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 20px;
+  background: linear-gradient(135deg, #0D9488 0%, #14B8A6 100%);
+  color: white;
+}
+
+.header h2 {
+  margin: 0;
+}
+
+.messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.message {
+  max-width: 70%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #f0f0f0;
+}
+
+.message.own {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #0D9488 0%, #14B8A6 100%);
+  color: white;
+}
+
+.sender {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  opacity: 0.8;
+}
+
+.text {
+  margin-bottom: 4px;
+}
+
+.time {
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+.inputForm {
+  display: flex;
+  padding: 20px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.inputForm input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-right: 12px;
+}
+
+.inputForm button {
+  background: linear-gradient(135deg, #0D9488 0%, #14B8A6 100%);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+

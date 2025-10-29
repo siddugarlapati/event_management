@@ -1,0 +1,372 @@
+/* ArtCulture Luxury Auth Page */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+.authPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f7fb 0%, #f5e6d3 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.authContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.authCard {
+  background: white;
+  border-radius: 20px;
+  padding: 48px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e8e4f0;
+  max-width: 480px;
+  width: 100%;
+  animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.authCard h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 8px;
+  text-align: center;
+  letter-spacing: -0.02em;
+  font-family: 'Playfair Display', serif;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666666;
+  font-size: 1.125rem;
+  margin-bottom: 32px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroup label {
+  font-weight: 600;
+  color: #222222;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.formGroup input,
+.formGroup select {
+  padding: 14px 18px;
+  border: 2px solid #e8e4f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  background: white;
+  color: #222222;
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
+  outline: none;
+  border-color: #b64d6d;
+  box-shadow: 0 0 0 3px rgba(182, 77, 109, 0.1);
+  transform: translateY(-1px);
+}
+
+.formGroup input::placeholder {
+  color: #999999;
+}
+
+.formGroup select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666666' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+.error {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  color: #dc2626;
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  border: 1px solid #fca5a5;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: shake 0.5s ease;
+}
+
+.error::before {
+  content: '⚠️';
+  font-size: 1.25rem;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+.success {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  color: #065f46;
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  border: 1px solid #6ee7b7;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.success::before {
+  content: '✓';
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.btn {
+  padding: 16px;
+  background: linear-gradient(135deg, #b64d6d 0%, #d4a5c8 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(182, 77, 109, 0.3);
+  margin-top: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(182, 77, 109, 0.4);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  background: linear-gradient(135deg, #999999 0%, #888888 100%);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 32px;
+  color: #666666;
+  font-size: 0.95rem;
+}
+
+.footer a {
+  color: #b64d6d;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #9a3d5a;
+  text-decoration: underline;
+}
+
+.divider {
+  text-align: center;
+  margin: 32px 0;
+  position: relative;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e8e4f0;
+}
+
+.divider span {
+  background: white;
+  padding: 0 16px;
+  color: #666666;
+  font-size: 0.875rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Role Selector Enhancement */
+.roleSelector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.roleOption {
+  padding: 20px 16px;
+  border: 2px solid #e8e4f0;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.roleOption:hover {
+  border-color: #b64d6d;
+  background: #fef5f0;
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(182, 77, 109, 0.15);
+}
+
+.roleOption.selected {
+  border-color: #b64d6d;
+  background: linear-gradient(135deg, #fef5f0 0%, #f8f7fb 100%);
+  box-shadow: 0 4px 12px rgba(182, 77, 109, 0.2);
+}
+
+.roleIcon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  display: block;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.roleName {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #222222;
+}
+
+/* Password Strength Indicator */
+.passwordStrength {
+  margin-top: 8px;
+  height: 4px;
+  background: #e8e4f0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.passwordStrengthBar {
+  height: 100%;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.passwordStrengthBar.weak {
+  width: 33%;
+  background: #ef4444;
+}
+
+.passwordStrengthBar.medium {
+  width: 66%;
+  background: #f59e0b;
+}
+
+.passwordStrengthBar.strong {
+  width: 100%;
+  background: #e5c3a3;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .authContainer {
+    padding: 40px 16px;
+  }
+
+  .authCard {
+    padding: 32px 24px;
+  }
+
+  .authCard h2 {
+    font-size: 1.875rem;
+  }
+
+  .roleSelector {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Loading State */
+.btn.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.btn.loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+

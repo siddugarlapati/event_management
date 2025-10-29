@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1761713952684,
+      "tag": "0000_empty_gunslinger",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1761714028382,
+      "tag": "0001_perfect_adam_warlock",
+      "breakpoints": true
+    }
+  ]
+}

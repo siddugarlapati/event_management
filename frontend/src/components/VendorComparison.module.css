@@ -1,0 +1,231 @@
+.comparisonOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.comparisonModal {
+  background: white;
+  border-radius: 20px;
+  max-width: 1200px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header {
+  padding: 24px 32px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #222222;
+}
+
+.closeBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #64748b;
+}
+
+.closeBtn:hover {
+  background: #fee2e2;
+  color: #dc2626;
+  transform: rotate(90deg);
+}
+
+.comparisonTable {
+  flex: 1;
+  overflow: auto;
+  padding: 32px;
+}
+
+.comparisonTable table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.comparisonTable thead {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+}
+
+.comparisonTable th {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 2px solid #e2e8f0;
+  background: #f8f9fa;
+}
+
+.featureColumn {
+  width: 200px;
+  font-weight: 700;
+  color: #222222;
+  position: sticky;
+  left: 0;
+  background: #f8f9fa;
+  z-index: 11;
+}
+
+.vendorColumn {
+  min-width: 250px;
+}
+
+.vendorHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vendorAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #b64d6d 0%, #9a3d5a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.vendorHeader h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 4px;
+}
+
+.category {
+  font-size: 0.75rem;
+  color: #64748b;
+  background: #fef5f0;
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+
+.comparisonTable td {
+  padding: 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.featureLabel {
+  font-weight: 600;
+  color: #475569;
+  position: sticky;
+  left: 0;
+  background: white;
+}
+
+.featureValue {
+  color: #222222;
+}
+
+.rating {
+  color: #fbbf24;
+  font-weight: 600;
+}
+
+.price {
+  color: #e5c3a3;
+  font-weight: 700;
+}
+
+.list {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.actions {
+  padding: 24px 32px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.btnSecondary {
+  padding: 12px 24px;
+  background: white;
+  color: #222222;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnSecondary:hover {
+  border-color: #b64d6d;
+  color: #b64d6d;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .comparisonModal {
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
+  .comparisonTable {
+    padding: 16px;
+  }
+
+  .featureColumn {
+    width: 120px;
+    font-size: 0.875rem;
+  }
+
+  .vendorColumn {
+    min-width: 200px;
+  }
+}
+

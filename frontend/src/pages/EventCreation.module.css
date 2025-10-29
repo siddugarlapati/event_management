@@ -1,0 +1,334 @@
+.eventCreation {
+  min-height: 100vh;
+  background: #f8f9fa;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.header h1 {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: #222222;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.header p {
+  font-size: 1.125rem;
+  color: #64748b;
+}
+
+/* Mode Selection */
+.modeSelection {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  margin-bottom: 32px;
+}
+
+.modeSelection h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.modeOptions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.modeCard {
+  padding: 32px;
+  border: 3px solid #e2e8f0;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  background: white;
+}
+
+.modeCard:hover {
+  border-color: #b64d6d;
+  background: #f0f9ff;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(6, 182, 212, 0.15);
+}
+
+.modeCard.selected {
+  border-color: #b64d6d;
+  background: #fef5f0;
+  box-shadow: 0 8px 16px rgba(6, 182, 212, 0.2);
+}
+
+.modeIcon {
+  font-size: 3.5rem;
+  margin-bottom: 16px;
+}
+
+.modeCard h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 8px;
+}
+
+.modeCard p {
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Form Card */
+.formCard {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  margin-bottom: 32px;
+}
+
+.formCard h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 24px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroup label {
+  font-weight: 600;
+  color: #222222;
+  font-size: 0.95rem;
+}
+
+.formGroup input,
+.formGroup textarea,
+.formGroup select {
+  padding: 14px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  background: white;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus,
+.formGroup select:focus {
+  outline: none;
+  border-color: #b64d6d;
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+}
+
+.formGroup textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* Room Type Selection */
+.roomTypes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.roomType {
+  padding: 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  background: white;
+}
+
+.roomType:hover {
+  border-color: #b64d6d;
+  background: #f0f9ff;
+}
+
+.roomType.selected {
+  border-color: #b64d6d;
+  background: #fef5f0;
+}
+
+.roomType .icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.roomType h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 4px;
+}
+
+.roomType p {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* Password Input */
+.passwordInput {
+  margin-top: 16px;
+}
+
+/* Error Message */
+.error {
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 14px 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  border: 1px solid #fecaca;
+  margin-bottom: 20px;
+}
+
+/* Success Message */
+.success {
+  background: #d1fae5;
+  color: #065f46;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #a7f3d0;
+  text-align: center;
+}
+
+.success h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #065f46;
+  margin-bottom: 12px;
+}
+
+.roomIdDisplay {
+  background: white;
+  padding: 16px;
+  border-radius: 10px;
+  margin: 16px 0;
+  border: 2px solid #e5c3a3;
+}
+
+.roomIdDisplay strong {
+  font-size: 1.5rem;
+  color: #222222;
+  letter-spacing: 2px;
+}
+
+.inviteLink {
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #b64d6d;
+  word-break: break-all;
+  margin-top: 12px;
+}
+
+/* Buttons */
+.formActions {
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.btn {
+  flex: 1;
+  padding: 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btnPrimary {
+  background: #b64d6d;
+  color: white;
+  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.4);
+}
+
+.btnPrimary:hover {
+  background: #9a3d5a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(6, 182, 212, 0.5);
+}
+
+.btnPrimary:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btnSecondary {
+  background: white;
+  color: #222222;
+  border: 2px solid #e2e8f0;
+}
+
+.btnSecondary:hover {
+  border-color: #b64d6d;
+  color: #b64d6d;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .eventCreation {
+    padding: 24px 16px;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .modeOptions,
+  .roomTypes {
+    grid-template-columns: 1fr;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .formActions {
+    flex-direction: column;
+  }
+}
+

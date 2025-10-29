@@ -1,0 +1,379 @@
+.taskManagement {
+  min-height: 100vh;
+  background: #f8f9fa;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 48px;
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.headerTop h1 {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: #222222;
+  letter-spacing: -0.02em;
+}
+
+.addTaskBtn {
+  padding: 14px 32px;
+  background: #b64d6d;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.4);
+}
+
+.addTaskBtn:hover {
+  background: #9a3d5a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(6, 182, 212, 0.5);
+}
+
+/* Progress Overview */
+.progressOverview {
+  background: white;
+  padding: 32px;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+  margin-bottom: 40px;
+}
+
+.progressStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.progressStat {
+  text-align: center;
+}
+
+.progressStat .value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #b64d6d;
+  margin-bottom: 8px;
+}
+
+.progressStat .label {
+  font-size: 1rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.progressBar {
+  background: #e2e8f0;
+  height: 16px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.progressBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #b64d6d 0%, #e5c3a3 100%);
+  border-radius: 20px;
+  transition: width 0.5s ease;
+  box-shadow: 0 2px 8px rgba(6, 182, 212, 0.3);
+}
+
+.progressText {
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #222222;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  padding: 12px 24px;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #64748b;
+}
+
+.filterBtn:hover {
+  border-color: #b64d6d;
+  color: #b64d6d;
+}
+
+.filterBtn.active {
+  background: #b64d6d;
+  color: white;
+  border-color: #b64d6d;
+}
+
+/* Task List */
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.taskCard {
+  background: white;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.taskCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.taskHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 16px;
+  gap: 16px;
+}
+
+.taskTitle {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.checkbox {
+  width: 28px;
+  height: 28px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.checkbox.checked {
+  background: #e5c3a3;
+  border-color: #e5c3a3;
+  position: relative;
+}
+
+.checkbox.checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.taskTitle h3 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #222222;
+}
+
+.taskTitle h3.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.taskActions {
+  display: flex;
+  gap: 12px;
+}
+
+.actionBtn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.editBtn {
+  background: #fef5f0;
+  color: #9a3d5a;
+}
+
+.editBtn:hover {
+  background: #f8f7fb;
+}
+
+.deleteBtn {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.deleteBtn:hover {
+  background: #fecaca;
+}
+
+.taskDescription {
+  color: #64748b;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.taskMeta {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.taskMetaItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.taskMetaItem .icon {
+  font-size: 1.125rem;
+}
+
+.taskStatus {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.taskStatus.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.taskStatus.inProgress {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.taskStatus.completed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.taskPriority {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.taskPriority.low {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.taskPriority.medium {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.taskPriority.high {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: 80px 20px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+.emptyState .icon {
+  font-size: 5rem;
+  margin-bottom: 24px;
+  opacity: 0.3;
+}
+
+.emptyState h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 12px;
+}
+
+.emptyState p {
+  color: #64748b;
+  font-size: 1.125rem;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .taskManagement {
+    padding: 24px 16px;
+  }
+
+  .headerTop {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .headerTop h1 {
+    font-size: 2rem;
+  }
+
+  .progressStats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+
+  .taskHeader {
+    flex-direction: column;
+  }
+
+  .taskMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+

@@ -1,0 +1,346 @@
+.pitch {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.nav {
+  background: white;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #0D9488 0%, #14B8A6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.backBtn {
+  color: #64748b;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.backBtn:hover {
+  color: #0D9488;
+}
+
+.hero {
+  background: linear-gradient(135deg, #0D9488 0%, #14B8A6 100%);
+  color: white;
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 56px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 24px;
+  opacity: 0.9;
+  margin-bottom: 60px;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.statNumber {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.statLabel {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 40px;
+  background: white;
+}
+
+.tab {
+  padding: 12px 32px;
+  background: #f1f5f9;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #64748b;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.tab:hover {
+  background: #e2e8f0;
+}
+
+.tab.active {
+  background: linear-gradient(135deg, #0D9488 0%, #14B8A6 100%);
+  color: white;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+.overview h2 {
+  font-size: 36px;
+  color: #222222;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.problemGrid, .solutionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  margin-bottom: 80px;
+}
+
+.problemCard, .solutionCard {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.problemIcon, .solutionIcon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.problemCard h3, .solutionCard h3 {
+  font-size: 22px;
+  color: #222222;
+  margin-bottom: 12px;
+}
+
+.problemCard p, .solutionCard p {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+}
+
+.featureSection {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.featureSection h2 {
+  font-size: 28px;
+  color: #222222;
+  margin-bottom: 24px;
+}
+
+.featureSection ul {
+  list-style: none;
+  padding: 0;
+}
+
+.featureSection li {
+  padding: 12px 0;
+  color: #334155;
+  font-size: 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.workflow {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.flowStep {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 40px;
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.stepNum {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #0D9488 0%, #14B8A6 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.stepContent h3 {
+  font-size: 22px;
+  color: #222222;
+  margin-bottom: 8px;
+}
+
+.stepContent p {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.tech {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.techStack, .architecture {
+  margin-bottom: 60px;
+}
+
+.techStack h2, .architecture h2 {
+  font-size: 32px;
+  color: #222222;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.techCard {
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.techCard h3 {
+  font-size: 20px;
+  color: #222222;
+  margin-bottom: 12px;
+}
+
+.techCard p {
+  color: #64748b;
+}
+
+.archDiagram {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.layer {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.layer h4 {
+  font-size: 18px;
+  color: #222222;
+  margin-bottom: 8px;
+}
+
+.layer p {
+  color: #64748b;
+}
+
+.cta {
+  background: linear-gradient(135deg, #0D9488 0%, #14B8A6 100%);
+  color: white;
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.cta h2 {
+  font-size: 42px;
+  margin-bottom: 40px;
+}
+
+.ctaButtons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btnDemo, .btnStart {
+  padding: 16px 40px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.btnDemo {
+  background: white;
+  color: #0D9488;
+}
+
+.btnDemo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
+}
+
+.btnStart {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+}
+
+.btnStart:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .stats {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .tabs {
+    flex-wrap: wrap;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+  }
+}
+
