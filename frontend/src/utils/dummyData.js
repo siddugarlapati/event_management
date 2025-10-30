@@ -7,6 +7,7 @@ export const dummyVendors = [
     pricing: { basic: 2500, premium: 5000, luxury: 10000 },
     address: 'Andheri West, Mumbai, Maharashtra',
     rating: 4.8,
+    image: 'https://images.unsplash.com/photo-1555244162-803834f70033?w=400&q=80',
     reviews: [
       { rating: 5, comment: 'Excellent service! Food was amazing.', date: new Date('2024-10-15') },
       { rating: 5, comment: 'Professional team, delicious food!', date: new Date('2024-09-20') }
@@ -21,6 +22,7 @@ export const dummyVendors = [
     pricing: { basic: 50000, premium: 125000, luxury: 250000 },
     address: 'Colaba, Mumbai, Maharashtra',
     rating: 4.9,
+    image: 'https://images.unsplash.com/photo-1519167758481-83f29da8c2b6?w=400&q=80',
     reviews: [
       { rating: 5, comment: 'Beautiful venue! Perfect for our wedding.', date: new Date('2024-10-10') }
     ],
@@ -34,6 +36,7 @@ export const dummyVendors = [
     pricing: { basic: 300, premium: 800, luxury: 1500 },
     address: 'Bandra West, Mumbai, Maharashtra',
     rating: 4.7,
+    image: 'https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=400&q=80',
     reviews: [
       { rating: 5, comment: 'Creative and beautiful decorations!', date: new Date('2024-10-05') }
     ],
@@ -47,6 +50,7 @@ export const dummyVendors = [
     pricing: { basic: 500, premium: 1200, luxury: 2500 },
     address: 'Connaught Place, New Delhi',
     rating: 4.9,
+    image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=400&q=80',
     reviews: [
       { rating: 5, comment: 'Amazing photographer! Captured every moment perfectly.', date: new Date('2024-10-12') }
     ],
@@ -60,6 +64,7 @@ export const dummyVendors = [
     pricing: { basic: 400, premium: 900, luxury: 1800 },
     address: 'Koramangala, Bangalore, Karnataka',
     rating: 4.6,
+    image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&q=80',
     reviews: [
       { rating: 5, comment: 'Great DJ! Everyone loved the music selection.', date: new Date('2024-10-08') }
     ],
@@ -73,6 +78,7 @@ export const dummyVendors = [
     pricing: { basic: 60, premium: 120, luxury: 250 },
     address: 'Jubilee Hills, Hyderabad, Telangana',
     rating: 4.8,
+    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80',
     reviews: [
       { rating: 5, comment: 'Exceptional quality and taste!', date: new Date('2024-10-01') }
     ],

@@ -22,7 +22,7 @@ const Navbar = () => {
       // Public/Guest Navigation
       return [
         { to: '/', label: 'Home' },
-        { to: '/vendors', label: 'Services' },
+        { to: '/vendor-search', label: 'Services' },
         { to: '/demo', label: 'Portfolio' },
         { to: '/contact', label: 'Contact' },
       ];
@@ -35,9 +35,9 @@ const Navbar = () => {
         // User/Organizer Navigation
         return [
           { to: '/dashboard/user', label: 'Dashboard' },
-          { to: '/event-planner', label: 'AI Planner' },
-          { to: '/vendors', label: 'Find Vendors' },
-          { to: '/quotes', label: 'Quotes' },
+          { to: '/quotes', label: 'AI Planner' },
+          { to: '/vendor-search', label: 'Find Vendors' },
+          { to: '/event-planner', label: 'Quotes' },
           { to: '/messages', label: 'Messages' },
           { to: '/event/create', label: 'Create Event' },
         ];
@@ -46,7 +46,7 @@ const Navbar = () => {
         // Vendor Navigation
         return [
           { to: '/dashboard/vendor', label: 'Dashboard' },
-          { to: '/quotes', label: 'Quote Requests' },
+          { to: '/event-planner', label: 'Quote Requests' },
           { to: '/messages', label: 'Messages' },
           { to: '/profile', label: 'My Profile' },
           { to: '/rewards', label: 'Rewards' },
@@ -56,25 +56,25 @@ const Navbar = () => {
         // Manager Navigation
         return [
           { to: '/dashboard/manager', label: 'Dashboard' },
-          { to: '/vendors', label: 'Vendors' },
-          { to: '/quotes', label: 'Quotes' },
+          { to: '/vendor-search', label: 'Vendors' },
+          { to: '/event-planner', label: 'Quotes' },
           { to: '/messages', label: 'Messages' },
-          { to: '/event-planner', label: 'Planner' },
+          { to: '/quotes', label: 'Planner' },
         ];
 
       case 'admin':
         // Admin Navigation
         return [
           { to: '/dashboard/manager', label: 'Admin Panel' },
-          { to: '/vendors', label: 'Manage Vendors' },
-          { to: '/quotes', label: 'All Quotes' },
+          { to: '/vendor-search', label: 'Manage Vendors' },
+          { to: '/event-planner', label: 'All Quotes' },
           { to: '/messages', label: 'Messages' },
         ];
 
       default:
         return [
           { to: '/', label: 'Home' },
-          { to: '/vendors', label: 'Services' },
+          { to: '/vendor-search', label: 'Services' },
         ];
     }
   };

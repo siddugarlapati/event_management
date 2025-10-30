@@ -11,7 +11,16 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem('token');
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      fetchProfile();
+      // Check if demo mode
+      if (token.startsWith('demo-token')) {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+          setUser(JSON.parse(storedUser));
+        }
+        setLoading(false);
+      } else {
+        fetchProfile();
+      }
     } else {
       setLoading(false);
     }
@@ -29,19 +38,53 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (email, password) => {
-    const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
-    localStorage.setItem('token', res.data.token);
-    axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
-    setUser(res.data.user);
-    return res.data.user;
+    try {
+      const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      localStorage.setItem('token', res.data.token);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+      setUser(res.data.user);
+      return res.data.user;
+    } catch (error) {
+      // Fallback to demo mode if backend is not available
+      if (error.code === 'ERR_NETWORK' || error.message.includes('Network Error')) {
+        console.log('Backend not available, using demo mode');
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+          const demoUser = JSON.parse(storedUser);
+          setUser(demoUser);
+          return demoUser;
+        }
+        throw new Error('No account found. Please register first.');
+      }
+      throw error;
+    }
   };
 
   const register = async (userData) => {
-    const res = await axios.post('http://localhost:5000/api/auth/register', userData);
-    localStorage.setItem('token', res.data.token);
-    axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
-    setUser(res.data.user);
-    return res.data.user;
+    try {
+      const res = await axios.post('http://localhost:5000/api/auth/register', userData);
+      localStorage.setItem('token', res.data.token);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+      setUser(res.data.user);
+      return res.data.user;
+    } catch (error) {
+      // Fallback to demo mode if backend is not available
+      if (error.code === 'ERR_NETWORK' || error.message.includes('Network Error')) {
+        console.log('Backend not available, using demo mode');
+        const demoUser = {
+          id: Date.now(),
+          name: userData.name,
+          email: userData.email,
+          role: userData.role
+        };
+        const demoToken = 'demo-token-' + Date.now();
+        localStorage.setItem('token', demoToken);
+        localStorage.setItem('user', JSON.stringify(demoUser));
+        setUser(demoUser);
+        return demoUser;
+      }
+      throw error;
+    }
   };
 
   const logout = () => {

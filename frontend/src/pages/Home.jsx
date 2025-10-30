@@ -7,10 +7,26 @@ const Home = () => {
   const navigate = useNavigate();
 
   const services = [
-    { name: "Weddings", icon: "💍", description: "Expertly crafted weddings experiences" },
-    { name: "Corporate", icon: "🏢", description: "Expertly crafted corporate experiences" },
-    { name: "Concerts", icon: "🎵", description: "Expertly crafted concerts experiences" },
-    { name: "House Warmings", icon: "🏠", description: "Expertly crafted house warmings experiences" },
+    { 
+      name: "Weddings", 
+      image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=400&q=80", 
+      description: "Expertly crafted weddings experiences" 
+    },
+    { 
+      name: "Corporate", 
+      image: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=400&q=80", 
+      description: "Expertly crafted corporate experiences" 
+    },
+    { 
+      name: "Concerts", 
+      image: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=400&q=80", 
+      description: "Expertly crafted concerts experiences" 
+    },
+    { 
+      name: "House Warmings", 
+      image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=80", 
+      description: "Expertly crafted house warmings experiences" 
+    },
   ];
 
   return (
@@ -19,6 +35,11 @@ const Home = () => {
 
       {/* Hero Section */}
       <section className={styles.heroSection}>
+        <div className={styles.floating3D}>
+          <div className={styles.shape1}></div>
+          <div className={styles.shape2}></div>
+          <div className={styles.shape3}></div>
+        </div>
         <div className={styles.heroContainer}>
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>
@@ -32,7 +53,7 @@ const Home = () => {
             <div className={styles.rating}>
               <div className={styles.stars}>
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={20} fill="#e5c3a3" color="#e5c3a3" />
+                  <Star key={i} size={20} fill="#14b8a6" color="#14b8a6" />
                 ))}
               </div>
               <p className={styles.ratingText}>Trusted by 1000+ clients</p>
@@ -55,6 +76,15 @@ const Home = () => {
               </button>
             </div>
           </div>
+          
+          {/* Hero Image Side */}
+          <div className={styles.heroImageSide}>
+            <img 
+              src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&q=80" 
+              alt="Beautiful wedding celebration"
+              className={styles.heroMainImage}
+            />
+          </div>
         </div>
       </section>
 
@@ -76,9 +106,13 @@ const Home = () => {
                 className={styles.serviceCard}
                 onClick={() => navigate('/vendor-search')}
               >
-                <div className={styles.serviceIcon}>{service.icon}</div>
-                <h3 className={styles.serviceName}>{service.name}</h3>
-                <p className={styles.serviceDescription}>{service.description}</p>
+                <div className={styles.serviceImage}>
+                  <img src={service.image} alt={service.name} />
+                </div>
+                <div className={styles.serviceContent}>
+                  <h3 className={styles.serviceName}>{service.name}</h3>
+                  <p className={styles.serviceDescription}>{service.description}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -181,20 +215,20 @@ const Home = () => {
               <h4 className={styles.footerHeading}>Contact</h4>
               <ul className={styles.footerContacts}>
                 <li className={styles.footerContact}>
-                  <Mail size={16} color="#e5c3a3" />
-                  <a href="mailto:hello@artculture.com" className={styles.footerLink}>
-                    hello@artculture.com
+                  <Mail size={16} color="#14b8a6" />
+                  <a href="mailto:contact@artculture.in" className={styles.footerLink}>
+                    contact@artculture.in
                   </a>
                 </li>
                 <li className={styles.footerContact}>
-                  <Phone size={16} color="#e5c3a3" />
-                  <a href="tel:+1234567890" className={styles.footerLink}>
-                    +1 (234) 567-890
+                  <Phone size={16} color="#14b8a6" />
+                  <a href="tel:+919876543210" className={styles.footerLink}>
+                    +91 98765 43210
                   </a>
                 </li>
                 <li className={styles.footerContact}>
-                  <MapPin size={16} color="#e5c3a3" />
-                  <span className={styles.footerText}>123 Event Street, City, State 12345</span>
+                  <MapPin size={16} color="#14b8a6" />
+                  <span className={styles.footerText}>MG Road, Bangalore, Karnataka 560001</span>
                 </li>
               </ul>
             </div>

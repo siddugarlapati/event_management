@@ -18,10 +18,13 @@ import MediaGallery from './pages/MediaGallery';
 import DemoWalkthrough from './pages/DemoWalkthrough';
 import PitchDemo from './pages/PitchDemo';
 import Quotes from './pages/Quotes';
+import AIPlanner from './pages/AIPlanner';
+import Animations3DDemo from './pages/Animations3DDemo';
 import JoinEvent from './pages/JoinEvent';
 import VendorDetails from './pages/VendorDetails';
 import EventPlanner from './pages/EventPlanner';
 import Messages from './pages/Messages';
+import Contact from './pages/Contact';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -32,6 +35,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/demo" element={<DemoWalkthrough />} />
+          <Route path="/3d-demo" element={<Animations3DDemo />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           
@@ -84,6 +89,7 @@ function App() {
           } />
           
           <Route path="/vendors" element={<VendorSearch />} />
+          <Route path="/vendor-search" element={<VendorSearch />} />
           <Route path="/vendor/:vendorId" element={<VendorDetails />} />
           <Route path="/event-planner" element={
             <ProtectedRoute>
@@ -122,7 +128,9 @@ function App() {
             </ProtectedRoute>
           } />
           
-          <Route path="/quotes" element={
+          <Route path="/quotes" element={<AIPlanner />} />
+          
+          <Route path="/my-quotes" element={
             <ProtectedRoute>
               <Quotes />
             </ProtectedRoute>

@@ -5,11 +5,27 @@ import Navbar from '../components/Navbar';
 import styles from './Quotes.module.css';
 
 const Quotes = () => {
-  const [quotes, setQuotes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState('all');
-  const [selectedQuotes, setSelectedQuotes] = useState([]);
+  const [step, setStep] = useState(1); // 1: Form, 2: Recommendations
+  const [eventDetails, setEventDetails] = useState({
+    eventName: '',
+    eventType: '',
+    budget: '',
+    guestCount: '',
+    eventDate: '',
+    vendorTypes: []
+  });
+  const [recommendations, setRecommendations] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const vendorTypeOptions = [
+    { value: 'catering', label: 'Catering', icon: '🍽️' },
+    { value: 'venue', label: 'Venue', icon: '🏛️' },
+    { value: 'decoration', label: 'Decoration', icon: '🎨' },
+    { value: 'photography', label: 'Photography', icon: '📸' },
+    { value: 'entertainment', label: 'Entertainment', icon: '🎭' },
+    { value: 'music', label: 'Music & DJ', icon: '🎵' }
+  ];
 
   useEffect(() => {
     fetchQuotes();

@@ -17,11 +17,20 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    
+    // Validation
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters');
+      return;
+    }
+    
     try {
       const user = await register(formData);
       navigate(`/dashboard/${user.role}`);
     } catch (err) {
-      setError(err.response?.data?.message || 'Registration failed');
+      console.error('Registration error:', err);
+      setError(err.response?.data?.message || err.message || 'Registration failed. Please try again.');
     }
   };
 

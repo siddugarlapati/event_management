@@ -6,16 +6,22 @@ import { dummyVendors } from '../utils/dummyData';
 import styles from './VendorSearch.module.css';
 
 const VendorSearch = () => {
-  const [vendors, setVendors] = useState(dummyVendors);
+  const [vendors, setVendors] = useState([]);
   const [filters, setFilters] = useState({
     category: '',
     minRating: '',
     useLocation: false
   });
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [selectedVendor, setSelectedVendor] = useState(null);
 
   useEffect(() => {
+    // Initialize with dummy data immediately
+    console.log('Dummy vendors:', dummyVendors);
+    console.log('Number of vendors:', dummyVendors.length);
+    setVendors(dummyVendors);
+    setLoading(false);
+    // Then try to fetch from backend
     fetchVendors();
   }, []);
 
@@ -40,7 +46,18 @@ const VendorSearch = () => {
       setVendors(res.data.length > 0 ? res.data : dummyVendors);
     } catch (error) {
       console.error('Error fetching vendors:', error);
-      setVendors(dummyVendors);
+      // Use dummy data and filter locally if backend is not available
+      let filteredVendors = [...dummyVendors];
+      
+      if (filters.category) {
+        filteredVendors = filteredVendors.filter(v => v.category === filters.category);
+      }
+      
+      if (filters.minRating) {
+        filteredVendors = filteredVendors.filter(v => v.rating >= parseFloat(filters.minRating));
+      }
+      
+      setVendors(filteredVendors);
     } finally {
       setLoading(false);
     }
@@ -63,6 +80,8 @@ const VendorSearch = () => {
           <h1>Find Vendors</h1>
           <p>Discover top-rated vendors near you</p>
         </div>
+        
+
 
         {/* Quick Category Filter */}
         <div className={styles.quickCategories}>
@@ -140,49 +159,66 @@ const VendorSearch = () => {
 
         {loading ? (
           <div className={styles.loading}>Loading vendors...</div>
+        ) : vendors.length === 0 ? (
+          <div className={styles.noResults}>
+            <h3>No vendors found</h3>
+            <p>Try adjusting your filters or check back later.</p>
+          </div>
         ) : (
           <div className={styles.grid}>
             {vendors.map(vendor => (
               <div
                 key={vendor._id}
                 className={styles.vendorCard}
-                onClick={() => setSelectedVendor(vendor)}
               >
-                <div className={styles.cardHeader}>
-                  <div className={styles.category}>{vendor.category}</div>
-                  <div className={styles.rating}>
-                    ⭐ {vendor.rating.toFixed(1)}
+                {vendor.image && (
+                  <div className={styles.cardImage}>
+                    <img src={vendor.image} alt={vendor.businessName} />
                   </div>
-                </div>
-                
-                <h3>{vendor.businessName}</h3>
-                
-                <div className={styles.services}>
-                  {vendor.services.slice(0, 3).map((service, idx) => (
-                    <span key={idx} className={styles.serviceTag}>
-                      {service}
-                    </span>
-                  ))}
-                </div>
-
-                {vendor.address && (
-                  <p className={styles.address}>📍 {vendor.address}</p>
                 )}
-
-                <div className={styles.pricing}>
-                  <div className={styles.priceItem}>
-                    <span>Basic</span>
-                    <strong>₹{vendor.pricing?.basic?.toLocaleString('en-IN') || 'N/A'}</strong>
+                
+                <div className={styles.cardContent}>
+                  <div className={styles.cardHeader}>
+                    <div className={styles.category}>{vendor.category}</div>
+                    <div className={styles.rating}>
+                      ⭐ {vendor.rating.toFixed(1)}
+                    </div>
                   </div>
-                  <div className={styles.priceItem}>
-                    <span>Premium</span>
-                    <strong>₹{vendor.pricing?.premium?.toLocaleString('en-IN') || 'N/A'}</strong>
+                  
+                  <h3>{vendor.businessName}</h3>
+                  
+                  <div className={styles.services}>
+                    {vendor.services.slice(0, 3).map((service, idx) => (
+                      <span key={idx} className={styles.serviceTag}>
+                        {service}
+                      </span>
+                    ))}
+                  </div>
+
+                  {vendor.address && (
+                    <p className={styles.address}>📍 {vendor.address}</p>
+                  )}
+
+                  <div className={styles.pricing}>
+                    <div className={styles.priceItem}>
+                      <span>Basic</span>
+                      <strong>₹{vendor.pricing?.basic?.toLocaleString('en-IN') || 'N/A'}</strong>
+                    </div>
+                    <div className={styles.priceItem}>
+                      <span>Premium</span>
+                      <strong>₹{vendor.pricing?.premium?.toLocaleString('en-IN') || 'N/A'}</strong>
+                    </div>
+                  </div>
+
+                  <div className={styles.cardActions}>
+                    <Link to={`/vendor/${vendor._id}`} className={styles.btnView}>
+                      View Details
+                    </Link>
+                    <Link to="/quotes" className={styles.btnAddToCart}>
+                      🛒 Add to Cart
+                    </Link>
                   </div>
                 </div>
-
-                <Link to={`/vendor/${vendor._id}`} className={styles.btnContact}>
-                  View Details
-                </Link>
               </div>
             ))}
           </div>

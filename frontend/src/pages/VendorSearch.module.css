@@ -2,6 +2,7 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #f0f9ff 0%, #fef5f0 50%, #f8fafc 100%);
   position: relative;
+  padding-top: 75px;
 }
 
 .page::before {
@@ -54,7 +55,7 @@
   color: #222222;
   margin-bottom: 20px;
   letter-spacing: -0.03em;
-  background: linear-gradient(135deg, #222222 0%, #b64d6d 50%, #e5c3a3 100%);
+  background: linear-gradient(135deg, #222222 0%, #14b8a6 50%, #f59e0b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -206,7 +207,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #b64d6d 0%, #e5c3a3 100%);
+  background: linear-gradient(90deg, #14b8a6 0%, #f59e0b 100%);
 }
 
 @keyframes fadeIn {
@@ -238,15 +239,15 @@
 }
 
 .select:hover {
-  border-color: #b64d6d;
+  border-color: #14b8a6;
   background: white;
-  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.1);
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.1);
 }
 
 .select:focus {
   outline: none;
-  border-color: #b64d6d;
-  box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.15);
+  border-color: #14b8a6;
+  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.15);
   background: white;
 }
 
@@ -265,23 +266,23 @@
 }
 
 .checkbox:hover {
-  background: linear-gradient(135deg, #fef5f0 0%, #f0f9ff 100%);
-  color: #9a3d5a;
-  border-color: #b64d6d;
+  background: linear-gradient(135deg, #f0fdfa 0%, #f0f9ff 100%);
+  color: #0d9488;
+  border-color: #14b8a6;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.15);
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.15);
 }
 
 .checkbox input {
   width: 20px;
   height: 20px;
   cursor: pointer;
-  accent-color: #b64d6d;
+  accent-color: #14b8a6;
 }
 
 .btnSearch {
   padding: 15px 40px;
-  background: linear-gradient(135deg, #b64d6d 0%, #9a3d5a 100%);
+  background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
   color: white;
   border: none;
   border-radius: 14px;
@@ -289,7 +290,7 @@
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 16px rgba(6, 182, 212, 0.3);
+  box-shadow: 0 4px 16px rgba(20, 184, 166, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -315,6 +316,25 @@
   background: linear-gradient(135deg, #9a3d5a 0%, #b64d6d 100%);
 }
 
+/* Loading and No Results */
+.loading,
+.noResults {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #666;
+}
+
+.noResults h3 {
+  font-size: 1.5rem;
+  color: #222;
+  margin-bottom: 0.5rem;
+}
+
+.noResults p {
+  font-size: 1rem;
+  color: #666;
+}
+
 /* Vendor Grid */
 .grid {
   display: grid;
@@ -331,10 +351,32 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   border: 2px solid #f1f5f9;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
   position: relative;
   display: flex;
   flex-direction: column;
+}
+
+.cardImage {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.vendorCard:hover .cardImage img {
+  transform: scale(1.1);
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .vendorCard::after {
@@ -504,42 +546,50 @@
   background-clip: text;
 }
 
-.btnContact {
-  display: block;
-  margin: 20px 24px 24px;
-  padding: 16px;
-  background: linear-gradient(135deg, #b64d6d 0%, #9a3d5a 100%);
-  color: white;
+.cardActions {
+  display: flex;
+  gap: 12px;
+  padding: 20px 24px 24px;
+  margin-top: auto;
+}
+
+.btnView,
+.btnAddToCart {
+  flex: 1;
+  padding: 14px;
   text-align: center;
-  border-radius: 14px;
+  border-radius: 12px;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.95rem;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.25);
   position: relative;
   overflow: hidden;
 }
 
-.btnContact::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s ease;
+.btnView {
+  background: white;
+  color: #14b8a6;
+  border: 2px solid #14b8a6;
 }
 
-.btnContact:hover::before {
-  left: 100%;
-}
-
-.btnContact:hover {
+.btnView:hover {
+  background: #14b8a6;
+  color: white;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(6, 182, 212, 0.4);
-  background: linear-gradient(135deg, #9a3d5a 0%, #b64d6d 100%);
+  box-shadow: 0 6px 16px rgba(20, 184, 166, 0.3);
+}
+
+.btnAddToCart {
+  background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+  color: white;
+  border: 2px solid transparent;
+}
+
+.btnAddToCart:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(20, 184, 166, 0.4);
+  background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
 }
 
 /* Loading State */
