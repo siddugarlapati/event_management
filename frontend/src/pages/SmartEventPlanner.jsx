@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Calendar, Users, DollarSign, Sparkles, TrendingDown, MessageSquare, CheckCircle, AlertCircle } from 'lucide-react';
+import Navbar from '../components/Navbar';
 import { dummyVendors } from '../utils/dummyData';
 import styles from './SmartEventPlanner.module.css';
 
@@ -179,8 +180,10 @@ const SmartEventPlanner = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
+    <>
+      <Navbar />
+      <div className={styles.container}>
+        <div className={styles.header}>
         <Sparkles className={styles.headerIcon} />
         <h1>🤖 AI Smart Event Planner</h1>
         <p>Let AI find the best vendors within your budget with detailed reasoning</p>
@@ -476,7 +479,8 @@ const SmartEventPlanner = () => {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 };
 

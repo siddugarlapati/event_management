@@ -11,12 +11,17 @@
   border-bottom: 1px solid rgba(229, 231, 235, 0.8);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
 }
 
 .navbar.scrolled {
   background: rgba(255, 255, 255, 1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   border-bottom-color: rgba(229, 231, 235, 1);
+}
+
+.navbar.hidden {
+  transform: translateY(-100%);
 }
 
 .navContainer {

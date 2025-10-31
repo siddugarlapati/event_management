@@ -16,6 +16,7 @@
   "dependencies": {
     "@stripe/stripe-js": "^8.1.0",
     "axios": "^1.6.2",
+    "gsap": "^3.12.5",
     "lucide-react": "^0.548.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

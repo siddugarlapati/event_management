@@ -1,7 +1,8 @@
 
-// Generate 100 dummy vendors
+// Generate 150 dummy vendors with ALL categories
 const generateVendors = () => {
-  const categories = ['catering', 'venue', 'decoration', 'photography', 'entertainment'];
+  const categories = ['catering', 'venue', 'decoration', 'photography', 'entertainment', 'music', 'makeup', 'florist', 'videography', 'mehendi', 'choreography', 'transportation', 'invitation', 'planning'];
+  
   const cities = [
     'Mumbai, Maharashtra', 'Delhi, NCR', 'Bangalore, Karnataka', 
     'Hyderabad, Telangana', 'Chennai, Tamil Nadu', 'Kolkata, West Bengal',
@@ -12,72 +13,185 @@ const generateVendors = () => {
   const businessPrefixes = {
     catering: ['Royal', 'Gourmet', 'Delicious', 'Tasty', 'Premium', 'Elite', 'Grand', 'Classic'],
     venue: ['Palace', 'Grand', 'Royal', 'Elegant', 'Majestic', 'Imperial', 'Luxury', 'Premium'],
-    decoration: ['Elegant', 'Creative', 'Artistic', 'Beautiful', 'Stunning', 'Gorgeous', 'Fancy'],
+    decoration: ['Elegant', 'Creative', 'Artistic', 'Beautiful', 'Stunning', 'Gorgeous', 'Fancy', 'Divine'],
     photography: ['Capture', 'Perfect', 'Moment', 'Snap', 'Focus', 'Frame', 'Vision', 'Lens'],
-    entertainment: ['Party', 'Fun', 'Celebration', 'Joyful', 'Happy', 'Festive', 'Lively']
+    entertainment: ['Party', 'Fun', 'Celebration', 'Joyful', 'Happy', 'Festive', 'Lively', 'Epic'],
+    music: ['Rhythm', 'Beat', 'Melody', 'Harmony', 'Sound', 'Tune', 'Vibe', 'Groove'],
+    makeup: ['Glamour', 'Beauty', 'Radiance', 'Glow', 'Charm', 'Style', 'Elegance', 'Allure'],
+    florist: ['Bloom', 'Petal', 'Blossom', 'Garden', 'Flora', 'Rose', 'Lily', 'Orchid'],
+    videography: ['Motion', 'Film', 'Reel', 'Cinema', 'Story', 'Scene', 'Action', 'Frame'],
+    mehendi: ['Henna', 'Art', 'Design', 'Pattern', 'Traditional', 'Bridal', 'Royal', 'Classic'],
+    choreography: ['Dance', 'Move', 'Rhythm', 'Step', 'Groove', 'Flow', 'Beat', 'Style'],
+    transportation: ['Luxury', 'Royal', 'Premium', 'Elite', 'Grand', 'Classic', 'Vintage', 'Modern'],
+    invitation: ['Creative', 'Elegant', 'Royal', 'Premium', 'Custom', 'Designer', 'Artistic', 'Unique'],
+    planning: ['Perfect', 'Dream', 'Elite', 'Premium', 'Royal', 'Grand', 'Expert', 'Professional']
   };
   
   const businessSuffixes = {
     catering: ['Caterers', 'Kitchen', 'Delights', 'Foods', 'Cuisine', 'Feast'],
     venue: ['Banquet', 'Hall', 'Palace', 'Gardens', 'Resort', 'Manor'],
-    decoration: ['Decorations', 'Designs', 'Decor', 'Creations', 'Art'],
-    photography: ['Photography', 'Studios', 'Captures', 'Shots', 'Moments'],
-    entertainment: ['Entertainment', 'Events', 'Productions', 'Shows', 'Performers']
+    decoration: ['Decorations', 'Designs', 'Decor', 'Creations', 'Art', 'Studio'],
+    photography: ['Photography', 'Studios', 'Captures', 'Shots', 'Moments', 'Images'],
+    entertainment: ['Entertainment', 'Events', 'Productions', 'Shows', 'Performers', 'Artists'],
+    music: ['DJ Services', 'Music', 'Sounds', 'Beats', 'Productions', 'Entertainment'],
+    makeup: ['Makeup', 'Beauty', 'Studio', 'Salon', 'Artists', 'Cosmetics'],
+    florist: ['Florist', 'Flowers', 'Florals', 'Blooms', 'Gardens', 'Arrangements'],
+    videography: ['Videography', 'Films', 'Productions', 'Studios', 'Cinematics', 'Media'],
+    mehendi: ['Mehendi', 'Henna Art', 'Designs', 'Artists', 'Studio', 'Creations'],
+    choreography: ['Choreography', 'Dance', 'Academy', 'Studio', 'Troupe', 'Performers'],
+    transportation: ['Transport', 'Cars', 'Rentals', 'Services', 'Travels', 'Rides'],
+    invitation: ['Invitations', 'Cards', 'Prints', 'Designs', 'Creations', 'Studio'],
+    planning: ['Planners', 'Events', 'Management', 'Services', 'Solutions', 'Consultants']
   };
   
   const services = {
     catering: ['Wedding Catering', 'Corporate Events', 'Buffet Service', 'Custom Menus', 'Live Counters', 'Dessert Bar'],
     venue: ['Wedding Venue', 'Conference Hall', 'Banquet Hall', 'Outdoor Garden', 'Poolside', 'Rooftop'],
     decoration: ['Floral Arrangements', 'Stage Decoration', 'Lighting', 'Balloon Art', 'Draping', 'Centerpieces'],
-    photography: ['Wedding Photography', 'Event Coverage', 'Drone Shots', 'Photo Editing', 'Videography', 'Albums'],
-    entertainment: ['DJ Services', 'Live Band', 'MC Services', 'Sound System', 'Dancers', 'Magicians']
+    photography: ['Wedding Photography', 'Event Coverage', 'Drone Shots', 'Photo Editing', 'Candid Photography', 'Albums'],
+    entertainment: ['DJ Services', 'Live Band', 'MC Services', 'Sound System', 'Dancers', 'Magicians'],
+    music: ['DJ Services', 'Live Band', 'Sound System', 'Music Production', 'Playlist Curation', 'Karaoke'],
+    makeup: ['Bridal Makeup', 'Party Makeup', 'Hair Styling', 'Airbrush Makeup', 'HD Makeup', 'Saree Draping'],
+    florist: ['Bridal Bouquet', 'Venue Decoration', 'Floral Arrangements', 'Garlands', 'Centerpieces', 'Car Decoration'],
+    videography: ['Wedding Films', 'Event Coverage', 'Drone Videography', 'Cinematic Videos', 'Highlights', 'Same Day Edit'],
+    mehendi: ['Bridal Mehendi', 'Arabic Design', 'Traditional Design', 'Modern Patterns', 'Rajasthani Style', 'Indo-Arabic'],
+    choreography: ['Sangeet Choreography', 'Couple Dance', 'Group Dance', 'Flash Mob', 'Wedding Dance', 'Bollywood Style'],
+    transportation: ['Luxury Cars', 'Vintage Cars', 'Buses', 'Tempo Traveller', 'Decorated Cars', 'Valet Service'],
+    invitation: ['Wedding Cards', 'Digital Invites', 'Custom Design', 'Printing', 'Video Invitations', 'E-cards'],
+    planning: ['Full Event Planning', 'Coordination', 'Vendor Management', 'Budget Planning', 'Timeline Management', 'Decor Planning']
   };
   
   const names = ['Priya', 'Amit', 'Kavya', 'Arjun', 'Meera', 'Vikram', 'Rohan', 'Anjali', 'Rahul', 'Neha'];
   const surnames = ['Patel', 'Kumar', 'Iyer', 'Nair', 'Desai', 'Singh', 'Sharma', 'Kapoor', 'Reddy', 'Gupta'];
   
   const vendors = [];
+  let vendorId = 1;
   
-  for (let i = 1; i <= 100; i++) {
-    const category = categories[i % categories.length];
-    const prefix = businessPrefixes[category][i % businessPrefixes[category].length];
-    const suffix = businessSuffixes[category][Math.floor(i / 2) % businessSuffixes[category].length];
-    const city = cities[i % cities.length];
-    const name = names[i % names.length];
-    const surname = surnames[i % surnames.length];
+  // Generate 10-12 vendors per category
+  categories.forEach((category, catIndex) => {
+    const vendorsPerCategory = 10 + (catIndex % 3);
     
-    vendors.push({
-      _id: `${i}`,
-      businessName: `${prefix} ${suffix} ${i > 50 ? 'Pro' : ''}`.trim(),
-      category: category,
-      services: services[category].slice(0, 4),
-      pricing: {
-        basic: category === 'venue' ? 50000 + (i * 1000) : category === 'catering' ? 2000 + (i * 50) : 300 + (i * 20),
-        premium: category === 'venue' ? 125000 + (i * 2000) : category === 'catering' ? 5000 + (i * 100) : 800 + (i * 40),
-        luxury: category === 'venue' ? 250000 + (i * 3000) : category === 'catering' ? 10000 + (i * 150) : 1500 + (i * 60)
-      },
-      address: city,
-      rating: parseFloat((4.0 + (i % 10) / 10).toFixed(1)),
-      image: `https://images.unsplash.com/photo-${
-        category === 'catering' ? '1555244162-803834f70033' :
-        category === 'venue' ? '1519167758481-83f29da8c2b0' :
-        category === 'decoration' ? '1478146896981-b80fe463b330' :
-        category === 'photography' ? '1492691527719-9d1e07e534b4' :
-        '1470229722913-7c0e2dbbafd3'
-      }?w=400&q=80`,
-      reviews: [
-        { 
-          rating: 4 + (i % 2), 
-          comment: 'Excellent service! Highly recommended.', 
-          date: new Date(2024, 9, (i % 28) + 1) 
-        }
-      ],
-      userId: { 
-        name: `${name} ${surname}`, 
-        email: `${name.toLowerCase()}${i}@example.com` 
+    for (let i = 0; i < vendorsPerCategory; i++) {
+      const prefix = businessPrefixes[category][i % businessPrefixes[category].length];
+      const suffix = businessSuffixes[category][i % businessSuffixes[category].length];
+      const city = cities[vendorId % cities.length];
+      const name = names[vendorId % names.length];
+      const surname = surnames[vendorId % surnames.length];
+      
+      // Category-specific pricing
+      let basicPrice, premiumPrice, luxuryPrice;
+      switch(category) {
+        case 'venue':
+          basicPrice = 50000 + (i * 5000);
+          premiumPrice = 125000 + (i * 10000);
+          luxuryPrice = 250000 + (i * 15000);
+          break;
+        case 'catering':
+          basicPrice = 800 + (i * 100);
+          premiumPrice = 1500 + (i * 150);
+          luxuryPrice = 3000 + (i * 200);
+          break;
+        case 'photography':
+        case 'videography':
+          basicPrice = 25000 + (i * 2000);
+          premiumPrice = 50000 + (i * 3000);
+          luxuryPrice = 100000 + (i * 5000);
+          break;
+        case 'decoration':
+          basicPrice = 30000 + (i * 3000);
+          premiumPrice = 75000 + (i * 5000);
+          luxuryPrice = 150000 + (i * 8000);
+          break;
+        case 'makeup':
+          basicPrice = 8000 + (i * 500);
+          premiumPrice = 15000 + (i * 1000);
+          luxuryPrice = 30000 + (i * 1500);
+          break;
+        case 'mehendi':
+          basicPrice = 5000 + (i * 500);
+          premiumPrice = 10000 + (i * 800);
+          luxuryPrice = 20000 + (i * 1200);
+          break;
+        case 'music':
+        case 'entertainment':
+          basicPrice = 15000 + (i * 1500);
+          premiumPrice = 35000 + (i * 2500);
+          luxuryPrice = 70000 + (i * 4000);
+          break;
+        case 'choreography':
+          basicPrice = 10000 + (i * 1000);
+          premiumPrice = 25000 + (i * 2000);
+          luxuryPrice = 50000 + (i * 3000);
+          break;
+        case 'florist':
+          basicPrice = 8000 + (i * 800);
+          premiumPrice = 20000 + (i * 1500);
+          luxuryPrice = 40000 + (i * 2500);
+          break;
+        case 'transportation':
+          basicPrice = 5000 + (i * 500);
+          premiumPrice = 15000 + (i * 1000);
+          luxuryPrice = 35000 + (i * 2000);
+          break;
+        case 'invitation':
+          basicPrice = 50 + (i * 10);
+          premiumPrice = 150 + (i * 20);
+          luxuryPrice = 350 + (i * 30);
+          break;
+        case 'planning':
+          basicPrice = 50000 + (i * 5000);
+          premiumPrice = 125000 + (i * 10000);
+          luxuryPrice = 300000 + (i * 15000);
+          break;
+        default:
+          basicPrice = 10000 + (i * 1000);
+          premiumPrice = 25000 + (i * 2000);
+          luxuryPrice = 50000 + (i * 3000);
       }
-    });
-  }
+      
+      vendors.push({
+        _id: `${vendorId}`,
+        businessName: `${prefix} ${suffix}${i > 5 ? ' Pro' : ''}`.trim(),
+        category: category,
+        services: services[category].slice(0, 4 + (i % 3)),
+        pricing: {
+          basic: basicPrice,
+          premium: premiumPrice,
+          luxury: luxuryPrice
+        },
+        address: city,
+        rating: parseFloat((3.8 + (vendorId % 12) / 10).toFixed(1)),
+        image: `https://images.unsplash.com/photo-${
+          category === 'catering' ? '1555244162-803834f70033' :
+          category === 'venue' ? '1519167758481-83f29da8c2b0' :
+          category === 'decoration' ? '1478146896981-b80fe463b330' :
+          category === 'photography' ? '1492691527719-9d1e07e534b4' :
+          category === 'videography' ? '1511285560929-80b456fea0bc' :
+          category === 'music' ? '1470229722913-7c0e2dbbafd3' :
+          category === 'makeup' ? '1487412947147-5cebf100ffc2' :
+          category === 'florist' ? '1490750967868-88aa4486c946' :
+          category === 'mehendi' ? '1519741644183-4b4c7b4c3c3e' :
+          category === 'choreography' ? '1504609813442-a8924e83f76e' :
+          category === 'transportation' ? '1449965325384-e3d6c2e6d3e3' :
+          category === 'invitation' ? '1516979187457-637abb4f9353' :
+          '1505236858219-8359eb29e329'
+        }?w=400&q=80`,
+        reviews: [
+          { 
+            rating: 4 + (vendorId % 2), 
+            comment: 'Excellent service! Highly recommended.', 
+            date: new Date(2024, 9, (vendorId % 28) + 1) 
+          }
+        ],
+        userId: { 
+          name: `${name} ${surname}`, 
+          email: `${name.toLowerCase()}${vendorId}@example.com` 
+        }
+      });
+      
+      vendorId++;
+    }
+  });
   
   return vendors;
 };

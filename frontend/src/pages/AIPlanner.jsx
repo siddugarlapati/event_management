@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Calendar, Users, DollarSign, Sparkles, MapPin } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import { dummyVendors } from '../utils/dummyData';
-import styles from './Quotes.module.css';
+import styles from './AIPlanner.module.css';
 
 const AIPlanner = () => {
   const [step, setStep] = useState(1);
@@ -71,8 +72,9 @@ const AIPlanner = () => {
         {step === 1 ? (
           <div className={styles.plannerForm}>
             <div className={styles.header}>
+              <Sparkles className={styles.headerIcon} size={80} />
               <h1>🤖 AI Event Planner</h1>
-              <p>Tell us about your event and we'll recommend the perfect vendors</p>
+              <p>Tell us about your event and we'll recommend the perfect vendors within your budget</p>
             </div>
 
             <form onSubmit={handleSubmit} className={styles.form}>
@@ -83,7 +85,7 @@ const AIPlanner = () => {
                   name="eventName"
                   value={eventDetails.eventName}
                   onChange={handleInputChange}
-                  placeholder="e.g., Sarah's Wedding"
+                  placeholder="e.g., Sarah & John's Wedding"
                   required
                 />
               </div>
@@ -97,22 +99,24 @@ const AIPlanner = () => {
                     onChange={handleInputChange}
                   >
                     <option value="">Select type</option>
-                    <option value="wedding">Wedding</option>
-                    <option value="corporate">Corporate Event</option>
-                    <option value="birthday">Birthday Party</option>
-                    <option value="concert">Concert</option>
-                    <option value="other">Other</option>
+                    <option value="wedding">💍 Wedding</option>
+                    <option value="corporate">🏢 Corporate Event</option>
+                    <option value="birthday">🎂 Birthday Party</option>
+                    <option value="anniversary">💑 Anniversary</option>
+                    <option value="engagement">💐 Engagement</option>
+                    <option value="concert">🎵 Concert</option>
+                    <option value="other">✨ Other</option>
                   </select>
                 </div>
 
                 <div className={styles.formGroup}>
-                  <label>Budget (₹) *</label>
+                  <label><DollarSign size={16} /> Total Budget (₹) *</label>
                   <input
                     type="number"
                     name="budget"
                     value={eventDetails.budget}
                     onChange={handleInputChange}
-                    placeholder="e.g., 500000"
+                    placeholder="500000"
                     required
                   />
                 </div>
@@ -120,18 +124,18 @@ const AIPlanner = () => {
 
               <div className={styles.formRow}>
                 <div className={styles.formGroup}>
-                  <label>Guest Count</label>
+                  <label><Users size={16} /> Guest Count</label>
                   <input
                     type="number"
                     name="guestCount"
                     value={eventDetails.guestCount}
                     onChange={handleInputChange}
-                    placeholder="e.g., 150"
+                    placeholder="150"
                   />
                 </div>
 
                 <div className={styles.formGroup}>
-                  <label>Event Date</label>
+                  <label><Calendar size={16} /> Event Date</label>
                   <input
                     type="date"
                     name="eventDate"
@@ -161,7 +165,8 @@ const AIPlanner = () => {
               </div>
 
               <button type="submit" className={styles.submitBtn}>
-                ✨ Get AI Recommendations
+                <Sparkles size={20} />
+                Get AI Recommendations
               </button>
             </form>
           </div>
@@ -169,18 +174,21 @@ const AIPlanner = () => {
           <div className={styles.recommendations}>
             <div className={styles.header}>
               <button onClick={() => setStep(1)} className={styles.backBtn}>
-                ← Back
+                ← Back to Form
               </button>
               <div>
-                <h1>Recommended Vendors for "{eventDetails.eventName}"</h1>
-                <p>Based on your budget of ₹{parseInt(eventDetails.budget).toLocaleString('en-IN')}</p>
+                <h1>✨ AI-Recommended Vendors</h1>
+                <p>Perfect matches for "{eventDetails.eventName}" • Budget: ₹{parseInt(eventDetails.budget).toLocaleString('en-IN')}</p>
               </div>
             </div>
 
             {recommendations.length === 0 ? (
               <div className={styles.empty}>
+                <Sparkles size={64} style={{ color: 'var(--primary-color)', marginBottom: '1rem' }} />
                 <p>No vendors found matching your criteria</p>
+                <p style={{ fontSize: '1rem', marginTop: '0.5rem' }}>Try adjusting your budget or vendor types</p>
                 <button onClick={() => setStep(1)} className={styles.browseBtn}>
+                  <Sparkles size={18} />
                   Adjust Criteria
                 </button>
               </div>
@@ -200,12 +208,15 @@ const AIPlanner = () => {
                         <div className={styles.rating}>⭐ {vendor.rating.toFixed(1)}</div>
                       </div>
                       
-                      <p className={styles.category}>{vendor.category}</p>
-                      <p className={styles.address}>📍 {vendor.address}</p>
+                      <span className={styles.category}>{vendor.category.toUpperCase()}</span>
+                      <p className={styles.address}>
+                        <MapPin size={16} />
+                        {vendor.address}
+                      </p>
                       
                       <div className={styles.pricing}>
                         <div className={styles.priceTag}>
-                          <span>From</span>
+                          <span>Starting From</span>
                           <strong>₹{vendor.pricing.basic.toLocaleString('en-IN')}</strong>
                         </div>
                       </div>
@@ -221,6 +232,7 @@ const AIPlanner = () => {
                           onClick={() => navigate('/event-planner')}
                           className={styles.requestBtn}
                         >
+                          <Sparkles size={16} />
                           Request Quote
                         </button>
                       </div>

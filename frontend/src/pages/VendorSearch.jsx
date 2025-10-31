@@ -72,7 +72,27 @@ const VendorSearch = () => {
   };
 
   const applyFilters = () => {
-    fetchVendors();
+    console.log('Applying filters:', filters);
+    console.log('Total vendors:', dummyVendors.length);
+    
+    // Filter locally from dummy data
+    let filteredVendors = [...dummyVendors];
+    
+    if (filters.category) {
+      console.log('Filtering by category:', filters.category);
+      filteredVendors = filteredVendors.filter(v => {
+        console.log('Vendor category:', v.category);
+        return v.category === filters.category;
+      });
+      console.log('Filtered vendors count:', filteredVendors.length);
+    }
+    
+    if (filters.minRating) {
+      filteredVendors = filteredVendors.filter(v => v.rating >= parseFloat(filters.minRating));
+    }
+    
+    setVendors(filteredVendors);
+    setLoading(false);
   };
 
   return (
@@ -104,8 +124,20 @@ const VendorSearch = () => {
               key={cat.value}
               className={`${styles.categoryBtn} ${filters.category === cat.value ? styles.active : ''}`}
               onClick={() => {
-                handleFilterChange('category', cat.value);
-                setTimeout(applyFilters, 100);
+                console.log('Category button clicked:', cat.value);
+                const newFilters = { ...filters, category: cat.value };
+                setFilters(newFilters);
+                
+                // Apply filter immediately
+                let filteredVendors = [...dummyVendors];
+                if (cat.value) {
+                  filteredVendors = filteredVendors.filter(v => v.category === cat.value);
+                }
+                if (filters.minRating) {
+                  filteredVendors = filteredVendors.filter(v => v.rating >= parseFloat(filters.minRating));
+                }
+                console.log('Setting vendors:', filteredVendors.length);
+                setVendors(filteredVendors);
               }}
             >
               <span className={styles.catIcon}>{cat.icon}</span>
@@ -222,15 +254,14 @@ const VendorSearch = () => {
                       onClick={() => {
                         const packageType = selectedPackage[vendor._id] || 'basic';
                         addToCart({
-                          vendorId: vendor._id,
-                          vendorName: vendor.businessName,
+                          _id: vendor._id,
+                          businessName: vendor.businessName,
                           category: vendor.category,
-                          packageType: packageType,
-                          price: vendor.pricing[packageType],
+                          pricing: vendor.pricing,
                           image: vendor.image,
                           rating: vendor.rating,
                           location: vendor.address
-                        });
+                        }, packageType);
                         navigate('/cart');
                       }}
                       className={styles.btnAddToCart}

@@ -21,30 +21,33 @@ export const CartProvider = ({ children }) => {
   }, [cartItems]);
 
   const addToCart = (vendor, packageType = 'basic') => {
+    const vendorId = vendor._id || vendor.vendorId;
     const existingItem = cartItems.find(
-      item => item.vendorId === vendor._id && item.packageType === packageType
+      item => item.vendorId === vendorId && item.packageType === packageType
     );
 
     if (existingItem) {
       // Update quantity if already in cart
       setCartItems(cartItems.map(item =>
-        item.vendorId === vendor._id && item.packageType === packageType
+        item.vendorId === vendorId && item.packageType === packageType
           ? { ...item, quantity: item.quantity + 1 }
           : item
       ));
     } else {
       // Add new item
+      const price = vendor.pricing?.[packageType] || vendor.price || 0;
       const newItem = {
-        vendorId: vendor._id,
-        vendorName: vendor.name || vendor.businessName,
+        vendorId: vendorId,
+        vendorName: vendor.name || vendor.businessName || vendor.vendorName,
         category: vendor.category,
         packageType,
-        price: packageType === 'premium' ? vendor.pricing?.premium || 0 : vendor.pricing?.basic || 0,
+        price: price,
         quantity: 1,
         image: vendor.images?.[0] || vendor.image,
         rating: vendor.rating,
-        location: vendor.location
+        location: vendor.location || vendor.address
       };
+      console.log('Adding to cart:', newItem); // Debug log
       setCartItems([...cartItems, newItem]);
     }
   };
