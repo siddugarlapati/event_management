@@ -1,6 +1,6 @@
-import { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingCart } from 'lucide-react';
+import { useContext, useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { ShoppingCart, User, LogOut, Settings, Award, ChevronDown, Sparkles } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import styles from './Navbar.module.css';
@@ -9,10 +9,24 @@ const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
   const { getCartCount } = useCart();
   const navigate = useNavigate();
+  const location = useLocation();
   const cartCount = getCartCount();
+  
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleLogout = () => {
     logout();
+    setIsUserMenuOpen(false);
     navigate('/');
   };
 
@@ -35,6 +49,7 @@ const Navbar = () => {
         // User/Organizer Navigation
         return [
           { to: '/dashboard/user', label: 'Dashboard' },
+          { to: '/smart-planner', label: '🤖 Smart Planner' },
           { to: '/quotes', label: 'AI Planner' },
           { to: '/vendor-search', label: 'Find Vendors' },
           { to: '/event-planner', label: 'Quotes' },
@@ -82,32 +97,38 @@ const Navbar = () => {
   const navigationLinks = getNavigationLinks();
 
   return (
-    <nav className={styles.navbar}>
-      <div className={styles.container}>
+    <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
+      <div className={styles.navContainer}>
         {/* Logo */}
         <Link to="/" className={styles.logo}>
-          <span className={styles.logoIcon}>🎨</span>
-          <span className={styles.logoText}>ArtCulture Events</span>
+          <div className={styles.logoIcon}>
+            <Sparkles size={24} />
+          </div>
+          <span className={styles.logoText}>ArtCulture</span>
         </Link>
         
         {/* Main Navigation */}
-        <div className={styles.navCenter}>
-          <div className={styles.navLinks}>
-            {navigationLinks.map((link) => (
-              <Link key={link.to} to={link.to} className={styles.link}>
+        <ul className={`${styles.navLinks} ${isMobileMenuOpen ? styles.open : ''}`}>
+          {navigationLinks.map((link) => (
+            <li key={link.to}>
+              <Link 
+                to={link.to} 
+                className={`${styles.navLink} ${location.pathname === link.to ? styles.active : ''}`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
                 {link.label}
               </Link>
-            ))}
-          </div>
-        </div>
+            </li>
+          ))}
+        </ul>
 
         {/* Right Actions */}
         <div className={styles.navRight}>
           {user ? (
             <>
-              {/* Cart Icon */}
-              <Link to="/cart" className={styles.cartIcon} title="View Cart">
-                <ShoppingCart size={22} />
+              {/* Cart Button */}
+              <Link to="/cart" className={styles.cartButton} title="View Cart">
+                <ShoppingCart size={20} />
                 {cartCount > 0 && (
                   <span className={styles.cartBadge}>{cartCount}</span>
                 )}
@@ -115,30 +136,65 @@ const Navbar = () => {
 
               {/* User Menu */}
               <div className={styles.userMenu}>
-                <div className={styles.userAvatar}>
-                  {(user.name || user.email).charAt(0).toUpperCase()}
-                </div>
-                <div className={styles.userDetails}>
+                <button 
+                  className={styles.userButton}
+                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                >
+                  <div className={styles.userAvatar}>
+                    {(user.name || user.email).charAt(0).toUpperCase()}
+                  </div>
                   <span className={styles.userName}>{user.name || user.email}</span>
-                  <span className={styles.userRole}>{user.role}</span>
+                  <ChevronDown size={16} className={styles.dropdownIcon} />
+                </button>
+
+                {/* Dropdown Menu */}
+                <div className={`${styles.dropdown} ${isUserMenuOpen ? styles.open : ''}`}>
+                  <Link 
+                    to="/profile" 
+                    className={styles.dropdownItem}
+                    onClick={() => setIsUserMenuOpen(false)}
+                  >
+                    <User size={18} />
+                    Profile
+                  </Link>
+                  <Link 
+                    to="/rewards" 
+                    className={styles.dropdownItem}
+                    onClick={() => setIsUserMenuOpen(false)}
+                  >
+                    <Award size={18} />
+                    Rewards
+                  </Link>
+                  <Link 
+                    to="/profile" 
+                    className={styles.dropdownItem}
+                    onClick={() => setIsUserMenuOpen(false)}
+                  >
+                    <Settings size={18} />
+                    Settings
+                  </Link>
+                  <div className={styles.dropdownDivider}></div>
+                  <button onClick={handleLogout} className={styles.logoutButton}>
+                    <LogOut size={18} />
+                    Logout
+                  </button>
                 </div>
               </div>
-
-              {/* Logout Button */}
-              <button onClick={handleLogout} className={styles.btnLogout} title="Logout">
-                Logout
-              </button>
             </>
           ) : (
-            <>
-              <Link to="/login" className={styles.btnLogin}>Login</Link>
-              <Link to="/register" className={styles.btnGetStarted}>Get Started</Link>
-            </>
+            <div className={styles.authButtons}>
+              <Link to="/login" className={styles.loginButton}>Login</Link>
+              <Link to="/register" className={styles.registerButton}>Get Started</Link>
+            </div>
           )}
         </div>
 
         {/* Mobile Menu Toggle */}
-        <button className={styles.mobileToggle} aria-label="Toggle menu">
+        <button 
+          className={`${styles.mobileMenuToggle} ${isMobileMenuOpen ? styles.open : ''}`}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
           <span></span>
           <span></span>
           <span></span>

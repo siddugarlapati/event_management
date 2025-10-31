@@ -25,6 +25,7 @@ import VendorDetails from './pages/VendorDetails';
 import EventPlanner from './pages/EventPlanner';
 import Messages from './pages/Messages';
 import Contact from './pages/Contact';
+import SmartEventPlanner from './pages/SmartEventPlanner';
 import ProtectedRoute from './components/ProtectedRoute';
 import Cart from './pages/Cart';
 import AIChatbot from './components/AIChatbot';
@@ -133,6 +134,12 @@ function App() {
           } />
           
           <Route path="/quotes" element={<AIPlanner />} />
+          
+          <Route path="/smart-planner" element={
+            <ProtectedRoute>
+              <SmartEventPlanner />
+            </ProtectedRoute>
+          } />
           
           <Route path="/my-quotes" element={
             <ProtectedRoute>
