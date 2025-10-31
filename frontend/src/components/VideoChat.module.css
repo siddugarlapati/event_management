@@ -1,0 +1,213 @@
+.videoChat {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.videoContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #1a1a1a;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.remoteVideo {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  gap: 1rem;
+}
+
+.placeholder svg {
+  color: #555;
+}
+
+.localVideo {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 240px;
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  border: 3px solid #3b82f6;
+  z-index: 10;
+}
+
+.videoOff {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.callStatus {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 0.75rem 1.25rem;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+  z-index: 10;
+}
+
+.statusDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.statusDot.calling {
+  background: #f59e0b;
+}
+
+.statusDot.connected {
+  background: #10b981;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+}
+
+.startCallBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.startCallBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.controlBtn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.controlBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.controlBtn.disabled {
+  background: rgba(239, 68, 68, 0.8);
+}
+
+.controlBtn.disabled:hover {
+  background: rgba(239, 68, 68, 0.9);
+}
+
+.controlBtn.active {
+  background: rgba(59, 130, 246, 0.8);
+}
+
+.controlBtn.active:hover {
+  background: rgba(59, 130, 246, 0.9);
+}
+
+.controlBtn.endCall {
+  background: rgba(239, 68, 68, 0.9);
+}
+
+.controlBtn.endCall:hover {
+  background: rgba(220, 38, 38, 1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .localVideo {
+    width: 120px;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .callStatus {
+    top: 10px;
+    left: 10px;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  .controls {
+    gap: 0.75rem;
+  }
+
+  .controlBtn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .startCallBtn {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.875rem;
+  }
+}

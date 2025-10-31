@@ -43,24 +43,6 @@ const DashboardUser = () => {
       </div>
       
       <div className={styles.container}>
-        <div className={styles.quickActions}>
-          <Link to="/event/create" className={styles.actionCard}>
-            <div className={styles.actionIcon}>✨</div>
-            <h3>Create Event</h3>
-            <p>Start planning your perfect event</p>
-          </Link>
-          <Link to="/join" className={styles.actionCard}>
-            <div className={styles.actionIcon}>🎉</div>
-            <h3>Join Event</h3>
-            <p>Enter room ID to join</p>
-          </Link>
-          <Link to="/vendors" className={styles.actionCard}>
-            <div className={styles.actionIcon}>🔍</div>
-            <h3>Find Vendors</h3>
-            <p>Discover top-rated services</p>
-          </Link>
-        </div>
-
         <div className={styles.stats}>
           <div className={styles.statCard}>
             <div className={styles.statIcon}>📅</div>

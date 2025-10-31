@@ -1,90 +1,88 @@
-export const dummyVendors = [
-  {
-    _id: '1',
-    businessName: 'Rajdhani Caterers',
-    category: 'catering',
-    services: ['Wedding Catering', 'Corporate Events', 'Buffet Service', 'Custom Menus'],
-    pricing: { basic: 2500, premium: 5000, luxury: 10000 },
-    address: 'Andheri West, Mumbai, Maharashtra',
-    rating: 4.8,
-    image: 'https://images.unsplash.com/photo-1555244162-803834f70033?w=400&q=80',
-    reviews: [
-      { rating: 5, comment: 'Excellent service! Food was amazing.', date: new Date('2024-10-15') },
-      { rating: 5, comment: 'Professional team, delicious food!', date: new Date('2024-09-20') }
-    ],
-    userId: { name: 'Priya Patel', email: 'priya@example.com' }
-  },
-  {
-    _id: '2',
-    businessName: 'Taj Palace Banquet',
-    category: 'venue',
-    services: ['Wedding Venue', 'Conference Hall', 'Banquet Hall', 'Outdoor Garden'],
-    pricing: { basic: 50000, premium: 125000, luxury: 250000 },
-    address: 'Colaba, Mumbai, Maharashtra',
-    rating: 4.9,
-    image: 'https://images.unsplash.com/photo-1519167758481-83f29da8c2b6?w=400&q=80',
-    reviews: [
-      { rating: 5, comment: 'Beautiful venue! Perfect for our wedding.', date: new Date('2024-10-10') }
-    ],
-    userId: { name: 'Amit Kumar', email: 'amit@example.com' }
-  },
-  {
-    _id: '3',
-    businessName: 'Elegant Decorations',
-    category: 'decoration',
-    services: ['Floral Arrangements', 'Stage Decoration', 'Lighting', 'Balloon Art'],
-    pricing: { basic: 300, premium: 800, luxury: 1500 },
-    address: 'Bandra West, Mumbai, Maharashtra',
-    rating: 4.7,
-    image: 'https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=400&q=80',
-    reviews: [
-      { rating: 5, comment: 'Creative and beautiful decorations!', date: new Date('2024-10-05') }
-    ],
-    userId: { name: 'Kavya Iyer', email: 'kavya@example.com' }
-  },
-  {
-    _id: '4',
-    businessName: 'Capture Moments Photography',
-    category: 'photography',
-    services: ['Wedding Photography', 'Event Coverage', 'Drone Shots', 'Photo Editing'],
-    pricing: { basic: 500, premium: 1200, luxury: 2500 },
-    address: 'Connaught Place, New Delhi',
-    rating: 4.9,
-    image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=400&q=80',
-    reviews: [
-      { rating: 5, comment: 'Amazing photographer! Captured every moment perfectly.', date: new Date('2024-10-12') }
-    ],
-    userId: { name: 'Arjun Nair', email: 'arjun@example.com' }
-  },
-  {
-    _id: '5',
-    businessName: 'Party Entertainment Pro',
-    category: 'entertainment',
-    services: ['DJ Services', 'Live Band', 'MC Services', 'Sound System'],
-    pricing: { basic: 400, premium: 900, luxury: 1800 },
-    address: 'Koramangala, Bangalore, Karnataka',
-    rating: 4.6,
-    image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&q=80',
-    reviews: [
-      { rating: 5, comment: 'Great DJ! Everyone loved the music selection.', date: new Date('2024-10-08') }
-    ],
-    userId: { name: 'Vikram Singh', email: 'vikram@example.com' }
-  },
-  {
-    _id: '6',
-    businessName: 'Gourmet Delights Catering',
-    category: 'catering',
-    services: ['Fine Dining', 'Dessert Bar', 'Cocktail Service', 'Vegan Options'],
-    pricing: { basic: 60, premium: 120, luxury: 250 },
-    address: 'Jubilee Hills, Hyderabad, Telangana',
-    rating: 4.8,
-    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80',
-    reviews: [
-      { rating: 5, comment: 'Exceptional quality and taste!', date: new Date('2024-10-01') }
-    ],
-    userId: { name: 'Meera Desai', email: 'meera@example.com' }
+
+// Generate 100 dummy vendors
+const generateVendors = () => {
+  const categories = ['catering', 'venue', 'decoration', 'photography', 'entertainment'];
+  const cities = [
+    'Mumbai, Maharashtra', 'Delhi, NCR', 'Bangalore, Karnataka', 
+    'Hyderabad, Telangana', 'Chennai, Tamil Nadu', 'Kolkata, West Bengal',
+    'Pune, Maharashtra', 'Ahmedabad, Gujarat', 'Jaipur, Rajasthan',
+    'Lucknow, Uttar Pradesh', 'Chandigarh, Punjab', 'Kochi, Kerala'
+  ];
+  
+  const businessPrefixes = {
+    catering: ['Royal', 'Gourmet', 'Delicious', 'Tasty', 'Premium', 'Elite', 'Grand', 'Classic'],
+    venue: ['Palace', 'Grand', 'Royal', 'Elegant', 'Majestic', 'Imperial', 'Luxury', 'Premium'],
+    decoration: ['Elegant', 'Creative', 'Artistic', 'Beautiful', 'Stunning', 'Gorgeous', 'Fancy'],
+    photography: ['Capture', 'Perfect', 'Moment', 'Snap', 'Focus', 'Frame', 'Vision', 'Lens'],
+    entertainment: ['Party', 'Fun', 'Celebration', 'Joyful', 'Happy', 'Festive', 'Lively']
+  };
+  
+  const businessSuffixes = {
+    catering: ['Caterers', 'Kitchen', 'Delights', 'Foods', 'Cuisine', 'Feast'],
+    venue: ['Banquet', 'Hall', 'Palace', 'Gardens', 'Resort', 'Manor'],
+    decoration: ['Decorations', 'Designs', 'Decor', 'Creations', 'Art'],
+    photography: ['Photography', 'Studios', 'Captures', 'Shots', 'Moments'],
+    entertainment: ['Entertainment', 'Events', 'Productions', 'Shows', 'Performers']
+  };
+  
+  const services = {
+    catering: ['Wedding Catering', 'Corporate Events', 'Buffet Service', 'Custom Menus', 'Live Counters', 'Dessert Bar'],
+    venue: ['Wedding Venue', 'Conference Hall', 'Banquet Hall', 'Outdoor Garden', 'Poolside', 'Rooftop'],
+    decoration: ['Floral Arrangements', 'Stage Decoration', 'Lighting', 'Balloon Art', 'Draping', 'Centerpieces'],
+    photography: ['Wedding Photography', 'Event Coverage', 'Drone Shots', 'Photo Editing', 'Videography', 'Albums'],
+    entertainment: ['DJ Services', 'Live Band', 'MC Services', 'Sound System', 'Dancers', 'Magicians']
+  };
+  
+  const names = ['Priya', 'Amit', 'Kavya', 'Arjun', 'Meera', 'Vikram', 'Rohan', 'Anjali', 'Rahul', 'Neha'];
+  const surnames = ['Patel', 'Kumar', 'Iyer', 'Nair', 'Desai', 'Singh', 'Sharma', 'Kapoor', 'Reddy', 'Gupta'];
+  
+  const vendors = [];
+  
+  for (let i = 1; i <= 100; i++) {
+    const category = categories[i % categories.length];
+    const prefix = businessPrefixes[category][i % businessPrefixes[category].length];
+    const suffix = businessSuffixes[category][Math.floor(i / 2) % businessSuffixes[category].length];
+    const city = cities[i % cities.length];
+    const name = names[i % names.length];
+    const surname = surnames[i % surnames.length];
+    
+    vendors.push({
+      _id: `${i}`,
+      businessName: `${prefix} ${suffix} ${i > 50 ? 'Pro' : ''}`.trim(),
+      category: category,
+      services: services[category].slice(0, 4),
+      pricing: {
+        basic: category === 'venue' ? 50000 + (i * 1000) : category === 'catering' ? 2000 + (i * 50) : 300 + (i * 20),
+        premium: category === 'venue' ? 125000 + (i * 2000) : category === 'catering' ? 5000 + (i * 100) : 800 + (i * 40),
+        luxury: category === 'venue' ? 250000 + (i * 3000) : category === 'catering' ? 10000 + (i * 150) : 1500 + (i * 60)
+      },
+      address: city,
+      rating: parseFloat((4.0 + (i % 10) / 10).toFixed(1)),
+      image: `https://images.unsplash.com/photo-${
+        category === 'catering' ? '1555244162-803834f70033' :
+        category === 'venue' ? '1519167758481-83f29da8c2b0' :
+        category === 'decoration' ? '1478146896981-b80fe463b330' :
+        category === 'photography' ? '1492691527719-9d1e07e534b4' :
+        '1470229722913-7c0e2dbbafd3'
+      }?w=400&q=80`,
+      reviews: [
+        { 
+          rating: 4 + (i % 2), 
+          comment: 'Excellent service! Highly recommended.', 
+          date: new Date(2024, 9, (i % 28) + 1) 
+        }
+      ],
+      userId: { 
+        name: `${name} ${surname}`, 
+        email: `${name.toLowerCase()}${i}@example.com` 
+      }
+    });
   }
-];
+  
+  return vendors;
+};
+
+export const dummyVendors = generateVendors();
 
 export const dummyEvents = [
   {

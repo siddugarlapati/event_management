@@ -26,8 +26,12 @@ import EventPlanner from './pages/EventPlanner';
 import Messages from './pages/Messages';
 import Contact from './pages/Contact';
 import ProtectedRoute from './components/ProtectedRoute';
+import Cart from './pages/Cart';
+import AIChatbot from './components/AIChatbot';
 
 function App() {
+  console.log('App component rendering...');
+  
   return (
     <AuthProvider>
       <CartProvider>
@@ -135,7 +139,14 @@ function App() {
               <Quotes />
             </ProtectedRoute>
           } />
+          
+          <Route path="/cart" element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          } />
         </Routes>
+        <AIChatbot />
       </BrowserRouter>
       </CartProvider>
     </AuthProvider>

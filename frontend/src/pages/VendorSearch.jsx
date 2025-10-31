@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
+import { useCart } from '../context/CartContext';
 import { dummyVendors } from '../utils/dummyData';
 import styles from './VendorSearch.module.css';
 
 const VendorSearch = () => {
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
   const [vendors, setVendors] = useState([]);
   const [filters, setFilters] = useState({
     category: '',
@@ -14,6 +17,7 @@ const VendorSearch = () => {
   });
   const [loading, setLoading] = useState(true);
   const [selectedVendor, setSelectedVendor] = useState(null);
+  const [selectedPackage, setSelectedPackage] = useState({});
 
   useEffect(() => {
     // Initialize with dummy data immediately
@@ -214,9 +218,25 @@ const VendorSearch = () => {
                     <Link to={`/vendor/${vendor._id}`} className={styles.btnView}>
                       View Details
                     </Link>
-                    <Link to="/quotes" className={styles.btnAddToCart}>
+                    <button 
+                      onClick={() => {
+                        const packageType = selectedPackage[vendor._id] || 'basic';
+                        addToCart({
+                          vendorId: vendor._id,
+                          vendorName: vendor.businessName,
+                          category: vendor.category,
+                          packageType: packageType,
+                          price: vendor.pricing[packageType],
+                          image: vendor.image,
+                          rating: vendor.rating,
+                          location: vendor.address
+                        });
+                        navigate('/cart');
+                      }}
+                      className={styles.btnAddToCart}
+                    >
                       🛒 Add to Cart
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </div>

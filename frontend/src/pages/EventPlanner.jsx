@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { loadStripe } from '@stripe/stripe-js';
 import Navbar from '../components/Navbar';
@@ -9,6 +9,7 @@ const stripePromise = loadStripe('pk_test_your_key_here');
 
 const EventPlanner = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [step, setStep] = useState(1);
   const [selectedVendors, setSelectedVendors] = useState([]);
   const [eventDetails, setEventDetails] = useState({
@@ -22,9 +23,28 @@ const EventPlanner = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem('selectedVendors') || '[]');
-    setSelectedVendors(saved);
-  }, []);
+    // Check if coming from cart with items
+    if (location.state?.cartItems && location.state.cartItems.length > 0) {
+      const cartVendors = location.state.cartItems.map(item => ({
+        _id: item.vendorId,
+        businessName: item.vendorName,
+        category: item.category,
+        pricing: { premium: item.price },
+        image: item.image,
+        rating: item.rating,
+        address: item.location,
+        packageType: item.packageType
+      }));
+      setSelectedVendors(cartVendors);
+      // Auto-generate quote and go to step 3
+      setTimeout(() => {
+        generateQuoteFromCart(cartVendors);
+      }, 500);
+    } else {
+      const saved = JSON.parse(localStorage.getItem('selectedVendors') || '[]');
+      setSelectedVendors(saved);
+    }
+  }, [location.state]);
 
   const categories = [
     { id: 'catering', name: 'Catering', icon: '🍽️' },
@@ -34,6 +54,44 @@ const EventPlanner = () => {
     { id: 'entertainment', name: 'Entertainment', icon: '🎵' },
     { id: 'music', name: 'Music', icon: '🎼' }
   ];
+
+  const generateQuoteFromCart = (vendors) => {
+    setLoading(true);
+    
+    // Calculate costs
+    const vendorCosts = vendors.reduce((sum, v) => sum + (v.pricing?.premium || 0), 0);
+    const perGuestCost = vendorCosts / 100; // Default guest count
+    const tax = vendorCosts * 0.1;
+    const serviceFee = vendorCosts * 0.05;
+    const total = vendorCosts + tax + serviceFee;
+
+    // AI recommendations
+    const recommendations = {
+      budgetAnalysis: 'Review your quote',
+      suggestions: [
+        'Consider booking 3 months in advance for better rates',
+        'Weekend dates may have premium pricing',
+        'Bundle services for potential discounts'
+      ],
+      timeline: [
+        { task: 'Book vendors', weeks: 12 },
+        { task: 'Send invitations', weeks: 8 },
+        { task: 'Final confirmations', weeks: 2 }
+      ]
+    };
+
+    setQuote({
+      vendorCosts,
+      perGuestCost: perGuestCost.toFixed(2),
+      tax: tax.toFixed(2),
+      serviceFee: serviceFee.toFixed(2),
+      total: total.toFixed(2),
+      recommendations
+    });
+
+    setLoading(false);
+    setStep(3);
+  };
 
   const generateQuote = async () => {
     setLoading(true);
