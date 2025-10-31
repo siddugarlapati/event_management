@@ -192,8 +192,31 @@ io.on('connection', (socket) => {
     socket.to(roomId).emit('user-stop-typing');
   });
 
+  // WebRTC Signaling
+  socket.on('video-offer', ({ roomId, offer, userId, userName }) => {
+    console.log(`📹 Video offer from ${userName} in room ${roomId}`);
+    socket.to(roomId).emit('video-offer', { offer, userId, userName });
+  });
+
+  socket.on('video-answer', ({ roomId, answer, userId, userName }) => {
+    console.log(`📹 Video answer from ${userName} in room ${roomId}`);
+    socket.to(roomId).emit('video-answer', { answer, userId, userName });
+  });
+
+  socket.on('ice-candidate', ({ roomId, candidate }) => {
+    console.log(`🧊 ICE candidate in room ${roomId}`);
+    socket.to(roomId).emit('ice-candidate', { candidate, userId: socket.id });
+  });
+
+  socket.on('call-ended', ({ roomId }) => {
+    console.log(`📞 Call ended in room ${roomId}`);
+    socket.to(roomId).emit('call-ended');
+  });
+
   socket.on('disconnect', () => {
     console.log('❌ User disconnected:', socket.id);
+    // Notify room members that user left
+    socket.broadcast.emit('user-left', { userId: socket.id });
   });
 
   socket.on('error', (error) => {

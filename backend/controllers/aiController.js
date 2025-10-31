@@ -1,4 +1,4 @@
-import { getAIRecommendations } from '../utils/aiEngine.js';
+import { getAIRecommendations, getChatbotResponse } from '../utils/aiEngine.js';
 
 export const getRecommendations = async (req, res) => {
   try {
@@ -27,6 +27,31 @@ export const analyzeBudget = async (req, res) => {
     };
 
     res.json(analysis);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// New endpoint for chatbot with AI
+export const chatWithAI = async (req, res) => {
+  try {
+    const { message, context } = req.body;
+
+    if (!message) {
+      return res.status(400).json({ message: 'Message is required' });
+    }
+
+    const aiResponse = await getChatbotResponse(message, context);
+
+    if (aiResponse) {
+      res.json(aiResponse);
+    } else {
+      res.json({
+        text: 'I apologize, but I\'m having trouble processing that right now. Please try rephrasing your question.',
+        source: 'fallback',
+        confidence: 'low'
+      });
+    }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
